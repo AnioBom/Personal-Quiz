@@ -9,10 +9,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - IBOutlets
+    
+    
+    // MARK: - Private properties
+    
+    private let questions = Question.getQuestions()
+    private var answersChosen: [Answer] = []
+    private var questionIndex = 0
+    private var currentAnswers: [Answer] {
+        questions[questionIndex].answers
+    }
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let resultVC = segue.destination as? ResultViewController else { return }
+        resultVC.answers = answersChosen
+    }
+    
+    // MARK: - IBActions
 
 
 }
